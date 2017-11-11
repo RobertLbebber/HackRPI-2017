@@ -2,6 +2,10 @@
 <html>
   <head>
   	<title>Bathroom</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
     <style>
        #map {
         height: 400px;
@@ -12,30 +16,96 @@
   <body>
     <h3>My Google Maps Demo</h3>
  <div id="map"></div>
+
+
+  
+
+        <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Add Review</span>
+                <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          This is an inline input field:
+          <div class="input-field inline">
+            <input id="email" type="email" class="validate">
+            <label for="email" data-error="wrong" data-success="right">Email</label>
+          </div>
+        </div>
+      </div>
+    </form>
+            </div>
+
+            <div class="card-action">
+              <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+            
+
+
+
     <script>
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
+      currentPos = {lat: 42.7293222, lng: -73.6795956};
       var map, infoWindow;
       function initMap() {
+
+
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 6
+
+          center: {lat: 42.7293222, lng: -73.6795956},
+          zoom: 20
         });
         infoWindow = new google.maps.InfoWindow;
 
+        
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
-            };
 
+            };
+             console.log(pos.lat +" , "+pos.lng);
+            currentPos.lat = pos.lat;
+            currentPos.lng = pos.lng;
+            //console.log(currentPos.lat +" , "+currentPos.lng);
+            /*
             infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
+            infoWindow.setContent('Men\'s Bathroom');
             infoWindow.open(map);
+
+            */
             map.setCenter(pos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -44,6 +114,52 @@
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
+        console.log(currentPos.lat +" , "+currentPos.lng);
+
+        /*
+        var marker = new google.maps.Marker({
+        	position: {lat:currentPos.lat, lng:currentPos.lng},
+        	 title: 'Your Location',
+        	map: map
+        });
+        */
+
+             var icons = {
+          male_female: {
+          icon: 'icons/male+female.png'
+        },
+        male: {
+          icon: 'icons/male.png'
+        },
+        female: {
+          icon: 'icons/female.png'
+        }
+      };
+      var features = [
+      {
+        position: new google.maps.LatLng( 42.7293222, -73.6795956),
+        type: 'male_female'
+      },
+      {
+        position: new google.maps.LatLng(-33.91721, 160.22630),
+        type: 'male'
+      },
+      {
+        position: new google.maps.LatLng(-33.91721, 151.22630),
+        type: 'female'
+      }];
+
+      // Create markers.
+        features.forEach(function(feature) {
+          var marker = new google.maps.Marker({
+            position: feature.position,
+            icon: icons[feature.type].icon,
+            map: map
+          });
+        });
+        
+        console.log(currentPos);
+
       }
 
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -55,7 +171,12 @@
       }
   </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=APIKEY&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmCeRM-Dn_tWEEodrCmW8w5yqoXdfi958&callback=initMap">
     </script>
+
+     <div>Icons made by <a href="https://www.flaticon.com/authors/ocha" title="OCHA">OCHA</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+ <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
   </body>
 </html>
