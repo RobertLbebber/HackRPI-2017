@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
-<head>
-	<title>Bathroom App</title>
-</head>
-<body>
+  <head>
+  	<title>Bathroom</title>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <script>
+    	var currentLat, currentLong;
+    	var x = document.getElementById("demo");
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+	currentLat = position.coords.latitude;
+	currentLong = position.coords.longitude;
+}
 
-</body>
+      function initMap() {
+        var uluru = {lat: currentLat, lng: currentLong};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+      console.log(currentLat + " , "+currentLong)
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmCeRM-Dn_tWEEodrCmW8w5yqoXdfi958&callback=initMap">
+    </script>
+  </body>
 </html>
