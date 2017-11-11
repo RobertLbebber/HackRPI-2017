@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+  		<meta charset="utf-8"/>
+  		<title>Details of a Bathroom</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/gmaps.js"></script>
+	</head>
+	<body>
+		<h3 id="bathroom-title" style="text-align:center;">Bathroom at Longtitude: X and Latitude: Y</h3>
+		<div id="map" style="width:100%;height:400px;"></div>
+		<script>
+		var map2, infoWindow;
+		function initMap() {
+        	// Create a map object and specify the DOM element for display.
+        	map2 = new google.maps.Map(document.getElementById('map'), {
+          		center: {lat: -34.397, lng: 150.644},
+          		zoom: 8,
+          		draggable: false
+        	});
+      	}
+      	window.onload = function() {
+      		map2.setCenter({lat: 0, lng: 0});
+      	}
+		</script>
+		<script async defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmCeRM-Dn_tWEEodrCmW8w5yqoXdfi958&callback=initMap">
+		</script>
+
+		<h4 id="bathroom-reviews" style="text-align:center;">Reviews</h4>
+		<!-- insert reviews here -->
+		<div id="button_adder" style="position: relative; left: 20px;">
+			<button type="button" class="btn btn-primary">Add Review</button>
+		</div>
+	</body>
+</html>
