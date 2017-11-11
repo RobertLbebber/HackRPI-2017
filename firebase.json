@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "HackRPI-2017",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
