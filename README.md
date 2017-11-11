@@ -1,5 +1,5 @@
 # HackRPI-2017
-Raz Reed, Andrew Ma, Subin Samuel, Nancy Chen
+Raz Reed, Andrew Ma, Subin Samuel, Etienne Morakotkarn (a little bit)
 
 Bathroom finder (we'll figure out a name)
 <name> is a crowdsourced bathroom finder. It features:
